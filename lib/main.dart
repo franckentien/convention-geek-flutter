@@ -58,6 +58,33 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Widget _buildSuggestions() {
+    return new ListView.builder(
+        // The itemBuilder callback is called once per suggested
+        // word pairing, and places each suggestion into a ListTile
+        // row. For even rows, the function adds a ListTile row for
+        // the word pairing. For odd rows, the function adds a
+        // Divider widget to visually separate the entries. Note that
+        // the divider may be difficult to see on smaller devices.
+        itemBuilder: (BuildContext _context, int i) {
+          // Add a one-pixel-high divider widget before each row
+          // in the ListView.
+          if (i.isOdd) {
+            return new Divider();
+          }
+          return _buildRow();
+        }
+    );
+  }
+
+  Widget _buildRow() {
+    return new ListTile(
+      title: new Text(
+        "Convention XXX"
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -118,40 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: new Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: new Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug paint" (press "p" in the console where you ran
-          // "flutter run", or select "Toggle Debug Paint" from the Flutter tool
-          // window in IntelliJ) to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
-              'You have pushed the button this many times:',
-            ),
-            new Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: new Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: _buildSuggestions(),
     );
   }
 }
