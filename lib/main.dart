@@ -82,6 +82,12 @@ class _MyHomePageState extends State<MyHomePage> {
       title: new Text(
         "Convention XXX"
       ),
+      subtitle: new Text(
+        'jj-jj mois year'
+      ),
+      trailing: new Text(
+        '-'
+      ),
     );
   }
 
