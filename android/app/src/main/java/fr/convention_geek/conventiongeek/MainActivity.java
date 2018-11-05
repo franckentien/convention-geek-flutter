@@ -1,4 +1,4 @@
-package fr.conventiongeek.conventiongeek;
+package fr.convention_geek.conventiongeek;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
