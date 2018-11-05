@@ -9,3 +9,5 @@ build/
 .flutter-plugins
 
 .idea/
+android/key.properties
+android/key.properties
