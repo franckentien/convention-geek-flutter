@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return new ListTile(
 
       title: new Text(
-        data[i]["name"]
+        data[i]["name"] + ' - ' + data[i]["place"]
       ),
       subtitle: new Text(
           DateFormatClass.getDisplayDate(data[i]["datedebut"], data[i]["datefin"])
