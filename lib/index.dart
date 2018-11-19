@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 import 'DateFormatClass.dart';
 import 'annuaire.dart';
+import 'event.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -84,7 +85,12 @@ class _HomePageState extends State<HomePage> {
       trailing: new Text(
           data[i]["informateur"]
       ),
-
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => (EventPage(eventid: data[i]["eventid"]))),
+        );
+      }
     );
   }
 
@@ -145,8 +151,6 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               title: Text('À propos'),
               onTap: () {
-                // Update the state of the app
-                // ...
                 Navigator.pop(context);
               },
             ),

@@ -1,16 +1,21 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:Convention_Geek/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 
 import 'DateFormatClass.dart';
 import 'index.dart';
+import 'annuaire.dart';
 
-class AnnuairePage extends StatefulWidget {
-  AnnuairePage({Key key}) : super(key: key);
+class EventPage extends StatefulWidget {
+
+  final String eventid;
+
+  EventPage({Key key, @required this.eventid}) : super(key: key);
+
+
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -22,19 +27,21 @@ class AnnuairePage extends StatefulWidget {
   // always marked "final".
 
   @override
-  _AnnuairePageState createState() => new _AnnuairePageState();
+  _EventPageState createState() => new _EventPageState();
 }
 
 
-class _AnnuairePageState extends State<AnnuairePage> {
+class _EventPageState extends State<EventPage> {
 
-  List data;
+  Map<String, dynamic> data;
+
+  get eventid => null;
 
   Future<String> getData() async {
 
     final response =
     await http.get(
-        Uri.encodeFull('https://www.convention-geek.fr/api/annuaire'),
+        Uri.encodeFull('https://www.convention-geek.fr/api/event/'+widget.eventid),
         headers: {
           "Accept": 'application/json'
         }
@@ -75,18 +82,12 @@ class _AnnuairePageState extends State<AnnuairePage> {
   Widget _buildRow(int i) {
     return new ListTile(
 
-      title: new Text(
-          data[i]["nom"]
+      title: new Text( "ABD"
+          //data[i]["eventmeta"]
       ),
-      subtitle: new Text(
-          data[i]["lieu"] + " - " + data[i]["departement"]["departement_code"] + " - " + data[i]["departement"]["departement_nom"]
-      ),
-      onTap: (){
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => (EventPage(eventid: data[i]["eventid"]))),
-        );
-      }
+//      subtitle: new Text(
+//          data[i]["lieu"] + " - " + data[i]["departement"]["departement_code"] + " - " + data[i]["departement"]["departement_nom"]
+//      ),
     );
   }
 
@@ -153,7 +154,7 @@ class _AnnuairePageState extends State<AnnuairePage> {
           ],
         ),
       ),
-      body: _buildSuggestions(),
+      body: new Text(data.toString())
     );
   }
 }
