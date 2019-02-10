@@ -86,7 +86,7 @@ class _EventPageState extends State<EventPage> {
   Widget _buildRow(int i) {
     return new ListTile(
 
-      title: new Text( data["eventlieu"].toString()
+      title: new Text( data.toString()
           //data[i]["eventmeta"]
       ),
 //      subtitle: new Text(
@@ -115,12 +115,29 @@ class _EventPageState extends State<EventPage> {
     );
   }
 
+  Widget _buildEventPlace() {
+    return new Container(
+      padding: const EdgeInsets.all(10),
+      child: Text(
+        "L'évènement: " + _parseHtmlString(data["eventname"]) + "est un évènement qui a lieu à " +
+            _parseHtmlString(data["eventlieu"]) + " dans le " + data["eventdepartement"]["departement_code"]+ " - " + data["eventdepartement"]["departement_nom"],
+        softWrap: true,),
+    );
+  }
+
   Widget _buildEventDescription() {
     return new Container(
       padding: const EdgeInsets.all(10),
       child: Text(
         _parseHtmlString(data["eventdescription"]),
         softWrap: true,),
+    );
+  }
+
+  Widget _buildEventDates() {
+    return new Container(
+      padding: const EdgeInsets.all(10),
+      child: _buildSuggestions(),
     );
   }
 
@@ -191,7 +208,9 @@ class _EventPageState extends State<EventPage> {
       body: Column(
         children: [
           _buildEventTitle(),
+          _buildEventPlace(),
           _buildEventDescription(),
+          //_buildEventDates(),
         ],
       )
     );
