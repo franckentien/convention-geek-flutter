@@ -102,6 +102,19 @@ class _EventPageState extends State<EventPage> {
     return parsedString;
   }
 
+  Widget _buildEventTitle() {
+
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
+    return new Container(
+      padding: const EdgeInsets.all(10),
+      child: Text(
+        _parseHtmlString(data["eventname"]),
+        style: textTheme.title,
+        softWrap: true,),
+    );
+  }
+
   Widget _buildEventDescription() {
     return new Container(
       padding: const EdgeInsets.all(10),
@@ -177,6 +190,7 @@ class _EventPageState extends State<EventPage> {
       ),
       body: Column(
         children: [
+          _buildEventTitle(),
           _buildEventDescription(),
         ],
       )
