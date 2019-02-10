@@ -4,10 +4,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
+import 'package:html/parser.dart';
 
 import 'DateFormatClass.dart';
 import 'index.dart';
 import 'annuaire.dart';
+
+
+
 
 class EventPage extends StatefulWidget {
 
@@ -82,7 +86,7 @@ class _EventPageState extends State<EventPage> {
   Widget _buildRow(int i) {
     return new ListTile(
 
-      title: new Text( "ABD"
+      title: new Text( data["eventlieu"].toString()
           //data[i]["eventmeta"]
       ),
 //      subtitle: new Text(
@@ -90,6 +94,23 @@ class _EventPageState extends State<EventPage> {
 //      ),
     );
   }
+
+  String _parseHtmlString(String htmlString) {
+
+    var document = parse(htmlString);
+    String parsedString = parse(document.body.text).documentElement.text;
+    return parsedString;
+  }
+
+  Widget _buildEventDescription() {
+    return new Container(
+      padding: const EdgeInsets.all(10),
+      child: Text(
+        _parseHtmlString(data["eventdescription"]),
+        softWrap: true,),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +175,11 @@ class _EventPageState extends State<EventPage> {
           ],
         ),
       ),
-      body: new Text(data.toString())
+      body: Column(
+        children: [
+          _buildEventDescription(),
+        ],
+      )
     );
   }
 }
