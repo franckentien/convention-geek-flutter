@@ -6,9 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 
 import 'DateFormatClass.dart';
-import 'annuaire.dart';
 import 'event.dart';
-import 'about.dart';
+import 'main.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -111,55 +110,7 @@ class _HomePageState extends State<HomePage> {
           title: new SvgPicture.asset('assets/banniere.svg')
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: new SvgPicture.asset('assets/banniere.svg'),
-
-              decoration: BoxDecoration(
-                color: new Color.fromRGBO(120, 10, 10, 1.0),
-              ),
-            ),
-            ListTile(
-              title: Text('Conventions'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (HomePage())),
-                );
-              },
-            ),
-//            ListTile(
-//              title: Text('News'),
-//              onTap: () {
-//                // Update the state of the app
-//                // ...
-//                Navigator.pop(context);
-//              },
-//            ),
-            ListTile(
-              title: Text('Annuaire'),
-
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (AnnuairePage())),
-                );
-                //Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('À propos'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (AboutPage())),
-                );
-              },
-            ),
-          ],
-        ),
+        child: MyApp.buildMainDrawer(context)
       ),
       body: _buildSuggestions(),
     );

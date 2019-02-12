@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:Convention_Geek/about.dart';
 import 'package:Convention_Geek/event.dart';
+import 'package:Convention_Geek/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 
-import 'DateFormatClass.dart';
-import 'index.dart';
 
 class AnnuairePage extends StatefulWidget {
   AnnuairePage({Key key}) : super(key: key);
@@ -107,53 +105,7 @@ class _AnnuairePageState extends State<AnnuairePage> {
           title: new SvgPicture.asset('assets/banniere.svg')
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: new SvgPicture.asset('assets/banniere.svg'),
-
-              decoration: BoxDecoration(
-                color: new Color.fromRGBO(120, 10, 10, 1.0),
-              ),
-            ),
-            ListTile(
-              title: Text('Conventions'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (HomePage())),
-                );
-              },
-            ),
-//            ListTile(
-//              title: Text('News'),
-//              onTap: () {
-//                // Update the state of the app
-//                // ...
-//                Navigator.pop(context);
-//              },
-//            ),
-            ListTile(
-              title: Text('Annuaire'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (AnnuairePage())),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('À propos'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (AboutPage())),
-                );
-              },
-            ),
-          ],
-        ),
+          child: MyApp.buildMainDrawer(context)
       ),
       body: _buildSuggestions(),
     );

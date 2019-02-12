@@ -1,15 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:Convention_Geek/about.dart';
+import 'package:Convention_Geek/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
 
 import 'DateFormatClass.dart';
-import 'index.dart';
-import 'annuaire.dart';
 
 class EventPage extends StatefulWidget {
 
@@ -149,55 +147,9 @@ class _EventPageState extends State<EventPage> {
         // the App.build method, and use it to set our appbar title.
           title: new SvgPicture.asset('assets/banniere.svg')
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: new SvgPicture.asset('assets/banniere.svg'),
-
-              decoration: BoxDecoration(
-                color: new Color.fromRGBO(120, 10, 10, 1.0),
-              ),
-            ),
-            ListTile(
-              title: Text('Conventions'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (HomePage())),
-                );
-              },
-            ),
-//            ListTile(
-//              title: Text('News'),
-//              onTap: () {
-//                // Update the state of the app
-//                // ...
-//                Navigator.pop(context);
-//              },
-//            ),
-            ListTile(
-              title: Text('Annuaire'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (AnnuairePage())),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('À propos'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (AboutPage())),
-                );
-              },
-            ),
-          ],
+        drawer: Drawer(
+            child: MyApp.buildMainDrawer(context)
         ),
-      ),
       body: Column(
         children: [
           _buildEventTitle(),

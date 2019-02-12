@@ -1,26 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:Convention_Geek/event.dart';
+import 'package:Convention_Geek/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 
-import 'DateFormatClass.dart';
-import 'index.dart';
-import 'annuaire.dart';
+
 
 class AboutPage extends StatefulWidget {
   AboutPage({Key key}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   @override
   _AboutPageState createState() => new _AboutPageState();
@@ -78,53 +67,7 @@ class _AboutPageState extends State<AboutPage> {
           title: new SvgPicture.asset('assets/banniere.svg')
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: new SvgPicture.asset('assets/banniere.svg'),
-
-              decoration: BoxDecoration(
-                color: new Color.fromRGBO(120, 10, 10, 1.0),
-              ),
-            ),
-            ListTile(
-              title: Text('Conventions'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (HomePage())),
-                );
-              },
-            ),
-//            ListTile(
-//              title: Text('News'),
-//              onTap: () {
-//                // Update the state of the app
-//                // ...
-//                Navigator.pop(context);
-//              },
-//            ),
-            ListTile(
-              title: Text('Annuaire'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (AnnuairePage())),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('À propos'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => (AboutPage())),
-                );
-              },
-            ),
-          ],
-        ),
+          child: MyApp.buildMainDrawer(context)
       ),
       body: Column(
             children: [
