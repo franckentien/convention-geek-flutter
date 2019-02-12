@@ -105,18 +105,18 @@ class DateFormatClass
     }
     else{// Le jour exacte de debut et de fin
       if(datedebut.year != datefin.year){ //Sur deux ans
-        rst = datedebut.day.toString() + ' ' + getShortMonth(datedebut.month)+ ' ' + datedebut.year.toString()+
-        ' - '  + datefin.day.toString() + ' ' + getShortMonth(datefin.month)+ ' ' + datefin.year.toString();
+        rst = datedebut.day.toString().padLeft(2, "0") + ' ' + getShortMonth(datedebut.month)+ ' ' + datedebut.year.toString()+
+        ' - '  + datefin.day.toString().padLeft(2, "0") + ' ' + getShortMonth(datefin.month)+ ' ' + datefin.year.toString();
       }
       else if(datedebut.month != datefin.month){//Sur deux mois
-        rst = datedebut.day.toString() + " " + getShortMonth(datedebut.month) + " " +
-              datefin.day.toString() + " " + getShortMonth(datefin.month) + " " + datefin.year.toString();
+        rst = datedebut.day.toString().padLeft(2, "0") + " " + getShortMonth(datedebut.month) + "-" +
+              datefin.day.toString().padLeft(2, "0") + " " + getShortMonth(datefin.month) + " " + datefin.year.toString();
       }
       else if(datedebut.day != datefin.day){//Sur plusieur jours
-        rst = datedebut.day.toString() + " " + datefin.day.toString() + " " + getFullMonth(datefin.month) + " " + datefin.year.toString();
+        rst = datedebut.day.toString().padLeft(2, "0") + "-" + datefin.day.toString().padLeft(2, "0") + " " + getFullMonth(datefin.month) + " " + datefin.year.toString();
       }
       else{//only 1 day
-        rst = datefin.day.toString() + " " + getFullMonth(datefin.month) + " " + datefin.year.toString();
+        rst = datefin.day.toString().padLeft(2, "0") + " " + getFullMonth(datefin.month) + " " + datefin.year.toString();
       }
     }
 

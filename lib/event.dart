@@ -73,7 +73,7 @@ class _EventPageState extends State<EventPage> {
   Widget _buildSuggestions() {
     return new ListView.separated(
 
-      itemCount: data == null ? 0 : data.length,
+      itemCount: data["eventdatelist"] == null ? 0 : data["eventdatelist"].length,
       itemBuilder: (BuildContext _context, int i) {
         // Add a one-pixel-high divider widget before each row
         // in the ListView.
@@ -85,13 +85,12 @@ class _EventPageState extends State<EventPage> {
 
   Widget _buildRow(int i) {
     return new ListTile(
-
-      title: new Text( data.toString()
-          //data[i]["eventmeta"]
+      leading: new Text(data["eventdatelist"][i]["edition"].toString()),
+      title: new Text(
+          DateFormatClass.getDisplayDate(data["eventdatelist"][i]["datedebut"], data["eventdatelist"][i]["datefin"])
       ),
-//      subtitle: new Text(
-//          data[i]["lieu"] + " - " + data[i]["departement"]["departement_code"] + " - " + data[i]["departement"]["departement_nom"]
-//      ),
+      trailing: data["eventdatelist"][i]["visiteurs"] == null ? new Text("-") : new Text(data["eventdatelist"][i]["visiteurs"].toString())
+      ,
     );
   }
 
@@ -135,9 +134,9 @@ class _EventPageState extends State<EventPage> {
   }
 
   Widget _buildEventDates() {
-    return new Container(
-      padding: const EdgeInsets.all(10),
-      child: _buildSuggestions(),
+    return new Expanded(
+      //child: _buildSuggestions(),
+      child: _buildSuggestions()
     );
   }
 
@@ -210,7 +209,7 @@ class _EventPageState extends State<EventPage> {
           _buildEventTitle(),
           _buildEventPlace(),
           _buildEventDescription(),
-          //_buildEventDates(),
+          _buildEventDates(),
         ],
       )
     );
