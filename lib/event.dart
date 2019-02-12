@@ -10,25 +10,11 @@ import 'DateFormatClass.dart';
 import 'index.dart';
 import 'annuaire.dart';
 
-
-
-
 class EventPage extends StatefulWidget {
 
   final String eventid;
 
   EventPage({Key key, @required this.eventid}) : super(key: key);
-
-
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   @override
   _EventPageState createState() => new _EventPageState();
@@ -70,30 +56,6 @@ class _EventPageState extends State<EventPage> {
   }
 
 
-  Widget _buildSuggestions() {
-    return new ListView.separated(
-
-      itemCount: data["eventdatelist"] == null ? 0 : data["eventdatelist"].length,
-      itemBuilder: (BuildContext _context, int i) {
-        // Add a one-pixel-high divider widget before each row
-        // in the ListView.
-        return _buildRow(i);
-      },
-      separatorBuilder: (BuildContext context, int index) => Divider(),
-    );
-  }
-
-  Widget _buildRow(int i) {
-    return new ListTile(
-      leading: new Text(data["eventdatelist"][i]["edition"].toString()),
-      title: new Text(
-          DateFormatClass.getDisplayDate(data["eventdatelist"][i]["datedebut"], data["eventdatelist"][i]["datefin"])
-      ),
-      trailing: data["eventdatelist"][i]["visiteurs"] == null ? new Text("-") : new Text(data["eventdatelist"][i]["visiteurs"].toString())
-      ,
-    );
-  }
-
   String _parseHtmlString(String htmlString) {
 
     var document = parse(htmlString);
@@ -133,22 +95,52 @@ class _EventPageState extends State<EventPage> {
     );
   }
 
-  Widget _buildEventDates() {
-    return new Expanded(
-      //child: _buildSuggestions(),
-      child: _buildSuggestions()
+  Widget _buildEventTitleDates() {
+
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
+    return new Container(
+      padding: const EdgeInsets.all(10),
+      child: Text(
+        _parseHtmlString("Les différentes éditions"),
+        style: textTheme.subtitle,
+        softWrap: true,),
     );
   }
 
+  Widget _buildEventDates() {
+    return new Expanded(
+      //child: _buildSuggestions(),
+        child: _buildSuggestions()
+    );
+  }
+
+  Widget _buildSuggestions() {
+    return new ListView.separated(
+      padding: const EdgeInsets.all(10),
+      itemCount: data["eventdatelist"] == null ? 0 : data["eventdatelist"].length,
+      itemBuilder: (BuildContext _context, int i) {
+        // Add a one-pixel-high divider widget before each row
+        // in the ListView.
+        return _buildRow(i);
+      },
+      separatorBuilder: (BuildContext context, int index) => Divider(),
+    );
+  }
+
+  Widget _buildRow(int i) {
+    return new ListTile(
+      leading: new Text(data["eventdatelist"][i]["edition"].toString()),
+      title: new Text(
+          DateFormatClass.getDisplayDate(data["eventdatelist"][i]["datedebut"], data["eventdatelist"][i]["datefin"])
+      ),
+      trailing: data["eventdatelist"][i]["visiteurs"] == null ? new Text("-") : new Text(data["eventdatelist"][i]["visiteurs"].toString())
+      ,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
 
     return new Scaffold(
       appBar: new AppBar(
@@ -209,6 +201,7 @@ class _EventPageState extends State<EventPage> {
           _buildEventTitle(),
           _buildEventPlace(),
           _buildEventDescription(),
+          _buildEventTitleDates(),
           _buildEventDates(),
         ],
       )
