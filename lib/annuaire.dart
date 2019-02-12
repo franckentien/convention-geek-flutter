@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:Convention_Geek/about.dart';
 import 'package:Convention_Geek/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -145,9 +146,10 @@ class _AnnuairePageState extends State<AnnuairePage> {
             ListTile(
               title: Text('À propos'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => (AboutPage())),
+                );
               },
             ),
           ],

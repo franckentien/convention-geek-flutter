@@ -1,17 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:Convention_Geek/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 
 import 'DateFormatClass.dart';
+import 'index.dart';
 import 'annuaire.dart';
-import 'event.dart';
-import 'about.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+class AboutPage extends StatefulWidget {
+  AboutPage({Key key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -23,75 +23,42 @@ class HomePage extends StatefulWidget {
   // always marked "final".
 
   @override
-  _HomePageState createState() => new _HomePageState();
+  _AboutPageState createState() => new _AboutPageState();
 }
 
-class _HomePageState extends State<HomePage> {
 
-  List data;
-
-  Future<String> getData() async {
-
-    final response =
-    await http.get(
-        Uri.encodeFull('https://www.convention-geek.fr/api/next-events'),
-        headers: {
-          "Accept": 'application/json'
-        }
-    );
-
-    if (response.statusCode == 200) {
-      // If the call to the server was successful, parse the JSON
-      this.setState((){
-        data = json.decode(response.body);
-      });
-      return "Success!";
-
-    } else {
-      // If that call was not successful, throw an error.
-      throw Exception('Failed to load post');
-    }
-  }
+class _AboutPageState extends State<AboutPage> {
 
   @override
   void initState(){
-    this.getData();
+
   }
 
+  Widget _buildPresentation() {
 
-  Widget _buildSuggestions() {
-    return new ListView.separated(
+    final TextTheme textTheme = Theme.of(context).textTheme;
 
-      itemCount: data == null ? 0 : data.length,
-      itemBuilder: (BuildContext _context, int i) {
-        // Add a one-pixel-high divider widget before each row
-        // in the ListView.
-        return _buildRow(i);
-      },
-      separatorBuilder: (BuildContext context, int index) => Divider(),
-    );
-  }
+    return new Container(
+      child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              "Présentation",
+              style: textTheme.title,
+              softWrap: true,),
+            const ListTile(
+              title: Text("Le site Convention Geek a été créé durant l’été 2014 par Franck CAYZAC, étudiant en programmation informatique.\n" +
+                  "J’ai commencé mes premières conventions en 2013 et je voulais en faire plus, mais à l’époque il était très difficile de trouver les conventions autour de chez moi, c’est donc sur cette idée que j’ai créé Convention Geek et qui aujourd’hui est devenu le premier site pour connaitre les conventions. Très rapidement après la création du site j’ai également mis en place une partie news dans laquelle vous pouvez retrouver mon retour sur les conventions avec le point de vue d’un visiteur.\n\n" +
+                  "Depuis 2014, le site a subi de gros changements avec un an après sa sortie l’ajout d’une page pour chaque évènement et l’historique des dates, mais également la sortie de la version 2 qui est la version actuelle du site. Néanmoins, je ne compte pas m’arrêter là. Je vais continuer à développer de nombreuses fonctionnalités pour le site qui vont rendre Convention Geek indispensable.\n\n" +
+                  "En attendant, je vous souhaite une bonne visite sur le site et vous donne rendez-vous en conventions pour plus de fun.\n",
+                softWrap: true,),
 
-  Widget _buildRow(int i) {
-    return new ListTile(
+            ),
 
-      title: new Text(
-          data[i]["name"] + ' - ' + data[i]["place"]
+          ],
+        ),
       ),
-      subtitle: new Text(
-          DateFormatClass.getDisplayDate(data[i]["datedebut"], data[i]["datefin"])
-
-      ),
-
-      trailing: new Text(
-          data[i]["informateur"]
-      ),
-      onTap: (){
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => (EventPage(eventid: data[i]["eventid"]))),
-        );
-      }
     );
   }
 
@@ -140,13 +107,11 @@ class _HomePageState extends State<HomePage> {
 //            ),
             ListTile(
               title: Text('Annuaire'),
-
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => (AnnuairePage())),
                 );
-                //Navigator.pop(context);
               },
             ),
             ListTile(
@@ -161,7 +126,12 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: _buildSuggestions(),
+      body: Column(
+            children: [
+        _buildPresentation()
+
+        ]
+      ),
     );
   }
 }

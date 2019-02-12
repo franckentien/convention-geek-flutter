@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:Convention_Geek/about.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
@@ -188,9 +189,10 @@ class _EventPageState extends State<EventPage> {
             ListTile(
               title: Text('À propos'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => (AboutPage())),
+                );
               },
             ),
           ],
