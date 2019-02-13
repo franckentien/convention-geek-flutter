@@ -67,19 +67,89 @@ class MyApp extends StatelessWidget {
         Divider(),
         ListTile(
           title: Text('Version Web'),
-          onTap: _launchURL,
+          onTap: _launchURLCG,
         ),
         Divider(),
+        buttonSection,
+        Divider(),
         ListTile(
-          subtitle: Text("Version: " + "1.99.1"),
-          onTap: _launchURL,
+          subtitle: Text("Version: " + "1.99.2"),
         ),
       ],
     );
   }
 
-   static _launchURL() async {
-     const url = 'https://www.convention-geek.fr/';
+   static Widget buttonSection = Container(
+     child: Row(
+       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+       children: [
+         _buildButtonColumn(new Image.asset('assets/buttons/twitter.png'), 'Twitter', _launchURLTwitter),
+         _buildButtonColumn(new Image.asset('assets/buttons/facebook.png'), 'Facebook', _launchURLFacebook),
+         _buildButtonColumn(new Image.asset('assets/buttons/instagram.png'), 'Instagram', _launchURLInstagram),
+         _buildButtonColumn(new Image.asset('assets/buttons/youtube.png'), 'YouTube', _launchURLYoutube),
+       ],
+     ),
+   );
+
+   static GestureDetector _buildButtonColumn(Image icon, String label, Function() _launchURL, ) {
+
+     return GestureDetector(
+       onTap: _launchURL,
+       child:
+       Column(
+         mainAxisSize: MainAxisSize.min,
+         mainAxisAlignment: MainAxisAlignment.center,
+         children: [
+            Tab (icon: icon,),
+           Container(
+             child: Text(
+               label,
+             ),
+           ),
+         ],
+
+       ),
+     );
+   }
+
+   static _launchURLCG() async {
+     const url = "https://www.convention-geek.fr/";
+     if (await canLaunch(url)) {
+       await launch(url);
+     } else {
+       throw 'Could not launch $url';
+     }
+   }
+
+  static _launchURLTwitter() async {
+    const url = "https://twitter.com/convention_geek";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+   static _launchURLFacebook() async {
+     const url = "https://www.facebook.com/ConventionGeek/";
+     if (await canLaunch(url)) {
+       await launch(url);
+     } else {
+       throw 'Could not launch $url';
+     }
+   }
+
+   static _launchURLInstagram() async {
+     const url = "https://www.instagram.com/conventiongeek/";
+     if (await canLaunch(url)) {
+       await launch(url);
+     } else {
+       throw 'Could not launch $url';
+     }
+   }
+
+   static _launchURLYoutube() async {
+     const url = "https://www.youtube.com/channel/UCXaZPtsT29zkyv7vMP89Vmg";
      if (await canLaunch(url)) {
        await launch(url);
      } else {
