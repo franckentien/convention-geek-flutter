@@ -5,6 +5,7 @@ import 'package:Convention_Geek/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 
 
@@ -77,7 +78,7 @@ class _AboutPageState extends State<AboutPage> {
                       children: <Widget>[
                         FlatButton(
                           child: const Text('JOUONS !'),
-                          onPressed: () { /* ... */ },
+                          onPressed: _launchURLNationsGlory,
                         ),
                       ],
                     ),
@@ -99,7 +100,7 @@ class _AboutPageState extends State<AboutPage> {
                       children: <Widget>[
                         FlatButton(
                           child: const Text('Où est mon cosplay ?'),
-                          onPressed: () { /* ... */ },
+                          onPressed: _launchURLFokuza,
                         ),
                       ],
                     ),
@@ -121,7 +122,7 @@ class _AboutPageState extends State<AboutPage> {
                       children: <Widget>[
                         FlatButton(
                           child: const Text('Plus de News ?'),
-                          onPressed: () { /* ... */ },
+                          onPressed: _launchURLErreur42,
                         ),
                       ],
                     ),
@@ -133,6 +134,33 @@ class _AboutPageState extends State<AboutPage> {
         ),
       ),
     );
+  }
+
+  static _launchURLNationsGlory() async {
+    const url = "https://nationsglory.fr/";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  static _launchURLFokuza() async {
+    const url = "https://www.fokuza.eu/";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  static _launchURLErreur42() async {
+    const url = "https://erreur42.fr/";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
