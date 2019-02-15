@@ -51,6 +51,90 @@ class _AboutPageState extends State<AboutPage> {
     );
   }
 
+  Widget _buildPartenaires() {
+
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
+    return new Container(
+      child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              "Partenaires",
+              style: textTheme.title,
+              softWrap: true,),
+            Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const ListTile(
+                    title: Text('NationsGlory'),
+                    subtitle: Text('NationsGlory est un serveur Semi-RP moddé, actuellement le premier serveur moddé de France depuis presque trois ans. \nRejoignez la communauté de NationsGlory, de grandes aventures vous attendent !'),
+                  ),
+                  ButtonTheme.bar( // make buttons use the appropriate styles for cards
+                    child: ButtonBar(
+                      children: <Widget>[
+                        FlatButton(
+                          child: const Text('JOUONS !'),
+                          onPressed: () { /* ... */ },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const ListTile(
+                    title: Text('Fokuza'),
+                    subtitle: Text('Fokuza, une association de photographes passionnés qui vous proposent ses services, présentent leur travail et ouvre une discussion entre modèles, public et photographes.'),
+                  ),
+                  ButtonTheme.bar( // make buttons use the appropriate styles for cards
+                    child: ButtonBar(
+                      children: <Widget>[
+                        FlatButton(
+                          child: const Text('Où est mon cosplay ?'),
+                          onPressed: () { /* ... */ },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const ListTile(
+                    title: Text('Erreur42'),
+                    subtitle: Text("Erreur42.fr est webzine sur l'univers geek tenu par une bande de passionnés. Fondé en 2013 sous un autre nom puis renommé en 2016 notre objectif est de rendre plus accessible la \"presse\" spécialisée en parlant avec passions de Cinéma, de Séries et de Littérature."),
+                  ),
+                  ButtonTheme.bar( // make buttons use the appropriate styles for cards
+                    child: ButtonBar(
+                      children: <Widget>[
+                        FlatButton(
+                          child: const Text('Plus de News ?'),
+                          onPressed: () { /* ... */ },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -69,11 +153,11 @@ class _AboutPageState extends State<AboutPage> {
       drawer: Drawer(
           child: MyApp.buildMainDrawer(context)
       ),
-      body: Column(
-            children: [
-        _buildPresentation()
-
-        ]
+      body: ListView(
+          children: [
+          _buildPresentation(),
+          _buildPartenaires(),
+          ]
       ),
     );
   }
