@@ -128,14 +128,35 @@ class _EventPageState extends State<EventPage> {
   }
 
   Widget _buildRow(int i) {
+
     return new ListTile(
       leading: new Text(data["eventdatelist"][i]["edition"].toString()),
-      title: new Text(
-          DateFormatClass.getDisplayDate(data["eventdatelist"][i]["datedebut"], data["eventdatelist"][i]["datefin"])
-      ),
+      title: new Text( DateFormatClass.getDisplayDate(data["eventdatelist"][i]["datedebut"], data["eventdatelist"][i]["datefin"]) ),
       trailing: data["eventdatelist"][i]["visiteurs"] == null ? new Text("-") : new Text(data["eventdatelist"][i]["visiteurs"].toString())
       ,
     );
+  }
+
+  Widget _buildPage() {
+
+    if(data == null){
+      return new Center(
+          child: new CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation(new Color.fromRGBO(120, 10, 10, 1.0)))
+      );
+    }
+    else {
+
+      return new Column(
+        children: [
+          _buildEventTitle(),
+          _buildEventPlace(),
+          _buildEventDescription(),
+          _buildEventTitleDates(),
+          _buildEventDates(),
+        ],
+      );
+
+    }
   }
 
   @override
@@ -150,15 +171,7 @@ class _EventPageState extends State<EventPage> {
         drawer: Drawer(
             child: MyApp.buildMainDrawer(context)
         ),
-      body: Column(
-        children: [
-          _buildEventTitle(),
-          _buildEventPlace(),
-          _buildEventDescription(),
-          _buildEventTitleDates(),
-          _buildEventDates(),
-        ],
-      )
+      body: _buildPage()
     );
   }
 }
