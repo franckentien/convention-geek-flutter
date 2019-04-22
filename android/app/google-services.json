@@ -1,0 +1,70 @@
+{
+  "project_info": {
+    "project_number": "915346152054",
+    "firebase_url": "https://convention-geek.firebaseio.com",
+    "project_id": "convention-geek",
+    "storage_bucket": "convention-geek.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:915346152054:android:3bb3ac61596bef9b",
+        "android_client_info": {
+          "package_name": "fr.convention_geek.conventiongeek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "915346152054-v71ubnva55v7jp8avjqgddpc9fscg4t9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnIGg3yB2rwY9UDS1dP_I3GxVJBO1RjWw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "915346152054-v71ubnva55v7jp8avjqgddpc9fscg4t9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-8672311963154117~1756943664"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:915346152054:android:64eddbb7107a12ab",
+        "android_client_info": {
+          "package_name": "fr.conventiongeek.conventiongeek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "915346152054-v71ubnva55v7jp8avjqgddpc9fscg4t9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnIGg3yB2rwY9UDS1dP_I3GxVJBO1RjWw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "915346152054-v71ubnva55v7jp8avjqgddpc9fscg4t9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

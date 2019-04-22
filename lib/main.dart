@@ -69,11 +69,20 @@ class MyApp extends StatelessWidget {
           title: Text('Version Web'),
           onTap: _launchURLCG,
         ),
+        ListTile(
+          title: Text('Galerie Photo'),
+          onTap: _launchURLPiwigo,
+        ),
         Divider(),
         buttonSection,
         Divider(),
+//        ListTile(
+//          title: Text('Soutenez-nous sur Tipeee'),
+//          onTap: _launchURLTipeee,
+//        ),
+//        Divider(),
         ListTile(
-          subtitle: Text("Version: " + "1.99.2"),
+          subtitle: Text("Version: " + "2.0.0"),
         ),
       ],
     );
@@ -121,6 +130,15 @@ class MyApp extends StatelessWidget {
      }
    }
 
+   static _launchURLPiwigo() async {
+     const url = "https://photos.convention-geek.fr/";
+     if (await canLaunch(url)) {
+       await launch(url);
+     } else {
+       throw 'Could not launch $url';
+     }
+   }
+
   static _launchURLTwitter() async {
     const url = "https://twitter.com/convention_geek";
     if (await canLaunch(url)) {
@@ -150,6 +168,15 @@ class MyApp extends StatelessWidget {
 
    static _launchURLYoutube() async {
      const url = "https://www.youtube.com/channel/UCXaZPtsT29zkyv7vMP89Vmg";
+     if (await canLaunch(url)) {
+       await launch(url);
+     } else {
+       throw 'Could not launch $url';
+     }
+   }
+
+   static _launchURLTipeee() async {
+     const url = "https://fr.tipeee.com/convention-gee2";
      if (await canLaunch(url)) {
        await launch(url);
      } else {
