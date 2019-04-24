@@ -23,8 +23,6 @@ dependencies:
   cupertino_icons: ^0.1.2
   url_launcher: ^5.0.1
   http: any
-  firebase_core: ^0.2.5  # add dependency for Firebase Core
-  firebase_analytics: ^1.0.4  # add dependency for Google Analytics for Firebase
 
 dev_dependencies:
   flutter_test:
